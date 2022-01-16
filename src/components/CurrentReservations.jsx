@@ -60,16 +60,29 @@ function Reservations({ reservations, setReservations }) {
 export default function CurrentReservations({ username }) {
   const history = useHistory();
   const [reservations, setReservations] = useState([]);
-
-  if (!username) {
-    history.push("/login");
-  }
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     fetch(`/api/user/${username}/reservations/`)
       .then((response) => response.json())
-      .then((data) => setReservations(data));
-  }, [username]);
+      .then((data) => {
+        if (isMounted) {
+          setReservations(data);
+        }
+      });
+  }, [username, isMounted]);
+
+  useEffect(() => {
+    setIsMounted(true);
+    if (!username) {
+      history.push("/login");
+    }
+
+    return () => {
+      setIsMounted(false);
+    };
+  }, [username, history]);
+
   return (
     <Container component="main" maxWidth="md">
       {reservations.length === 0 ? (
