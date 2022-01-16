@@ -1,9 +1,7 @@
 import { Container, Typography } from "@material-ui/core";
 import { useHistory } from "react-router";
-import { useUsername } from "../hooks/useUsername";
 
-export default function Homepage() {
-  const { username } = useUsername();
+export default function Homepage({username}) {
   const history = useHistory();
 
   if (!username) {
