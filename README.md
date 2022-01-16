@@ -51,6 +51,35 @@ with `source env/bin/activate`. Then install dependencies using
 
 ## Local development
 
+### One Time Only Setup
+
+1. Create the database (this assumes you have Postgres installed and running). You can name the database
+   anything but you need to refer to the correct name in the next step.
+
+   ```
+   createdb reservations
+   ```
+
+2. Create a secrets file to export the environment variables needed for the application.
+
+   You can set APP_SECRET_KEY to any string.
+
+   DATABASE_URL should refer to the location of the database you created in the previous step.
+
+   ENV should be set to development.
+
+   ```
+   echo "export APP_SECRET_KEY='some_secret'\nexport DATABASE_URL='postgres:///reservations'\nexport ENV='development'" > secrets.sh
+   ```
+
+3. Seed the database (optional)
+
+   ```
+   python3 seed.py
+   ```
+
+### Running the servers (do this each time you are running the application)
+
 In separate terminal tabs, run:
 
 ```shell
@@ -58,8 +87,7 @@ yarn js-start
 yarn py-start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view
-the application in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view the application in the browser.
 
 The page will reload if you make edits.
 
@@ -80,11 +108,11 @@ to install the backend dependencies before running this.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It bundles React in production mode and optimizes the build
-for the best performance.
+Builds the app for production to the `build` folder. It bundles React in production mode
+and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified and the filenames include the hashes.
+
 Your app is ready to be deployed!
 
 ### Deployment
@@ -92,7 +120,10 @@ Your app is ready to be deployed!
 The application is deployed using Heroku. For production, the Flask server
 serves the pre-compiled and optimized frontend build.
 
-If new frontend changes need to be deployed, run `yarn build` before deploying.
+If deploying new frontend changes, run `yarn build` before deploying.
 To deploy, run `git push heroku main` (you will need to set up Heroku access first).
 
-The deployed application can be found at https://melon-reservations.herokuapp.com/.
+To run a command on heroku, you will need to precede the command with `heroku run` (on your local machine).
+For example, to run the `model.py` file interactively, you would use `heroku run python3 -i model.py`.
+
+The deployed application can is at https://melon-takehome-react.herokuapp.com/.

@@ -1,4 +1,6 @@
 from datetime import datetime
+import os
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -21,8 +23,8 @@ class Reservation(db.Model):
             "start_time": self.start_time.isoformat(),
         }
 
-
-def connect_to_db(flask_app, db_uri, echo):
+def connect_to_db(flask_app, echo = False):
+    db_uri = os.environ["DATABASE_URL"].replace("postgres", "postgresql")
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
     flask_app.config["SQLALCHEMY_ECHO"] = echo
     flask_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -34,6 +36,5 @@ def connect_to_db(flask_app, db_uri, echo):
 
 
 if __name__ == "__main__":
-    from api import app
-
-    app.app_context().push()
+    app = Flask(__name__)
+    connect_to_db(app, True)

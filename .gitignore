@@ -10,3 +10,5 @@ yarn-debug.log*
 yarn-error.log*
 .vscode
 secrets.sh
+__pycache__/
+yarn.lock

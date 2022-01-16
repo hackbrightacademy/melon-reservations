@@ -9,8 +9,7 @@ import os
 app = Flask(__name__, static_folder="./build", static_url_path="/")
 app.secret_key = os.environ["APP_SECRET_KEY"]
 local_dev = os.environ.get("ENV", "") == "development"
-db_uri = os.environ["DATABASE_URL"].replace("postgres", "postgresql")
-connect_to_db(app, db_uri, echo=local_dev)
+connect_to_db(app, echo=local_dev)
 
 
 @app.route("/api/user/<username>/reservations/", methods=["GET"])
@@ -89,6 +88,6 @@ def index(path):
 def not_found(_error):
     return app.send_static_file("index.html")
 
-
+# this is only called for local development
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
