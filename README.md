@@ -2,7 +2,7 @@
 
 This project allows you to make and manage melon tasting reservations. 🍉
 
-[Project Requirement](https://docs.google.com/document/d/1g5WMLwezVuGCNnZBafREobcDDst8PgxElGPHfk7EgRI/edit)
+[Project Requirements](https://docs.google.com/document/d/1g5WMLwezVuGCNnZBafREobcDDst8PgxElGPHfk7EgRI/edit)
 
 ## Prerequisites
 
