@@ -114,16 +114,3 @@ and optimizes the build for the best performance.
 The build is minified and the filenames include the hashes.
 
 Your app is ready to be deployed!
-
-### Deployment
-
-The application is deployed using Heroku. For production, the Flask server
-serves the pre-compiled and optimized frontend build.
-
-If deploying new frontend changes, run `yarn build` before deploying.
-To deploy, run `git push heroku main` (you will need to set up Heroku access first).
-
-To run a command on heroku, you will need to precede the command with `heroku run` (on your local machine).
-For example, to run the `model.py` file interactively, you would use `heroku run python3 -i model.py`.
-
-The deployed application can is at https://melon-takehome-react.herokuapp.com/.
