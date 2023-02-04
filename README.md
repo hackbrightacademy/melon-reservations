@@ -1,4 +1,4 @@
-# [Melon Reservation Scheduler](https://melon-reservations.herokuapp.com/)
+# [Melon Reservation Scheduler]
 
 This project allows you to make and manage melon tasting reservations. 🍉
 
